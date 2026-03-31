@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Saaci — Sickle Cell Support App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --coral:#FF6A4D;
+  --coral-hot:#FF5A3D;
+  --peach:#FFD6C7;
+  --apricot:#FFB38A;
+  --bg:#FFF7F3;
+  --text:#1E1E1E;
+  --muted:#6C6C6C;
+  --lilac:#C8B6FF;
+  --lilac-deep:#8E7CFF;
+  --border:rgba(255,106,77,0.12);
+  --shadow:0 4px 24px rgba(255,106,77,0.10);
+  --shadow-lg:0 12px 48px rgba(255,106,77,0.14);
+  --radius:18px;
+  --radius-sm:10px;
+  --radius-pill:999px;
+  --font-display:'DM Serif Display',serif;
+  --font-body:'DM Sans',sans-serif;
+  --max-w:1100px;
+  --transition:all 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased
+}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.15}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 28px}
+.section{padding:88px 0}
+.gradient-text{
+  background:linear-gradient(135deg,var(--coral) 0%,var(--lilac-deep) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text
+}
+.tag{
+  display:inline-block;
+  background:rgba(255,214,199,0.55);
+  color:var(--coral);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.09em;
+  text-transform:uppercase;
+  padding:5px 13px;
+  border-radius:var(--radius-pill)
+}
+.tag-lilac{background:rgba(200,182,255,0.22);color:var(--lilac-deep)}
+.u-inline{display:inline-block}
+.u-mb-22{margin-bottom:22px}
+.u-mb-18{margin-bottom:18px}
+.u-mb-15{margin-bottom:15px}
+.u-mb-14{margin-bottom:14px}
+.section-bg{background:var(--bg)}
+.section-gradient{background:linear-gradient(180deg,var(--bg) 0%,rgba(255,214,199,0.18) 100%)}
+.text-left{text-align:left}
+.who-intro{font-size:16px;color:var(--muted);line-height:1.65;text-align:left}
+.founder-mission-icon{font-size:19px;flex-shrink:0}
+.icon-lg{font-size:34px}
+.icon-md{font-size:26px}
+.btn-outline-click{cursor:pointer}
+.btn-primary-nav{font-size:13.5px;padding:10px 20px}
+.tag-soon{font-size:10px;padding:3px 9px}
+
+.feature-card-white{background:#fff}
+.feature-card-coral{background:var(--coral)}
+.feature-icon-peach{background:#FFD6C7}
+.feature-icon-lilac{background:rgba(200,182,255,0.4)}
+.feature-icon-apricot{background:#FFB38A}
+.feature-icon-light{background:rgba(255,255,255,0.25)}
+.feature-title-light{color:#fff}
+.feature-desc-muted{color:var(--muted)}
+.feature-desc-light{color:rgba(255,255,255,0.85)}
+
+.about-title{font-size:clamp(24px,3.5vw,38px);margin-bottom:22px;letter-spacing:-0.02em}
+.why-title{font-size:clamp(24px,3.5vw,38px);margin-bottom:26px;letter-spacing:-0.02em;max-width:620px}
+.about-card-icon{font-size:26px;margin-bottom:10px;display:block}
+.values-icon{font-size:30px;margin-bottom:14px;display:block}
+.values-title{font-family:var(--font-body);font-size:16px;font-weight:700;margin-bottom:9px}
+.values-copy{font-size:14px;color:var(--muted);line-height:1.65}
+.section-tight-bottom{padding:0 0 72px}
+.for-card-soon{border:1.5px dashed rgba(142,124,255,0.35);background:rgba(200,182,255,0.06)}
+.who-for-sub{font-size:16px;color:var(--muted);max-width:500px;margin:0 auto;line-height:1.65}
+.btn-primary{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--coral);
+  color:#fff;
+  font-family:var(--font-body);
+  font-size:15px;
+  font-weight:600;
+  padding:11px 22px;
+  border-radius:var(--radius-pill);
+  border:none;
+  cursor:pointer;
+  transition:var(--transition);
+  text-decoration:none;
+  white-space:nowrap
+}
+.btn-primary:hover{
+  background:var(--coral-hot);
+  transform:translateY(-1px);
+  box-shadow:0 8px 24px rgba(255,90,61,0.35)
+}
+.btn-outline{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:transparent;
+  color:var(--coral);
+  font-family:var(--font-body);
+  font-size:15px;
+  font-weight:600;
+  padding:12px 26px;
+  border-radius:var(--radius-pill);
+  border:1.5px solid var(--coral);
+  cursor:pointer;
+  transition:var(--transition);
+  text-decoration:none
+}
+.btn-outline:hover{background:rgba(255,106,77,0.07);transform:translateY(-1px)}
+.card{
+  background:#fff;
+  border-radius:var(--radius);
+  padding:28px;
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+  transition:var(--transition)
+}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+
+/* NAV */
+nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:100;
+  padding:14px 0;
+  transition:all 0.3s ease;
+  overflow:visible
+}
+nav.scrolled{
+  background:rgba(255,247,243,0.94);
+  -webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,106,77,0.1);
+  padding:11px 0;
+  box-shadow:0 4px 20px rgba(255,106,77,0.07)
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:40px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0;cursor:pointer}
+.logo img{width:30px;height:30px;object-fit:contain}
+.logo-text{font-family:var(--font-display);font-size:24px;color:var(--text);letter-spacing:-0.02em}
+.nav-links{display:flex;align-items:center;gap:24px;flex-shrink:0}
+.nav-link{font-size:15px;font-weight:500;color:var(--muted);transition:color 0.2s;cursor:pointer}
+.nav-link:hover{color:var(--coral)}
+
+/* PAGE SECTIONS */
+.page-section{display:none}
+.page-section.active{display:block}
+
+/* HERO */
+.hero{
+  position:relative;
+  padding:150px 0 90px;
+  overflow:hidden;
+  min-height:100vh;
+  display:flex;
+  align-items:center
+}
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse 60% 55% at 70% 25%, rgba(255,214,199,0.55) 0%,transparent 65%),
+    radial-gradient(ellipse 40% 40% at 15% 80%, rgba(200,182,255,0.28) 0%,transparent 60%),
+    var(--bg)
+}
+.hero-inner{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center
+}
+.hero-h1{font-size:clamp(38px,5vw,62px);margin-bottom:20px;letter-spacing:-0.03em}
+.hero-sub{font-size:18px;color:var(--muted);max-width:460px;margin-bottom:34px;line-height:1.7}
+.hero-ctas{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:14px}
+.hero-note{font-size:12px;color:rgba(108,108,108,0.6)}
+.hero-visual{display:flex;justify-content:center;align-items:center;animation:fadeUp 0.9s ease 0.2s both}
+
+/* SCREENSHOT MOCKUP */
+.phone-wrap{position:relative;padding:44px 24px;display:flex;justify-content:center}
+.float-badge{
+  position:absolute;
+  background:#fff;
+  border-radius:40px;
+  padding:9px 15px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  font-weight:500;
+  box-shadow:0 8px 28px rgba(0,0,0,0.11);
+  z-index:2;
+  white-space:nowrap
+}
+.float-badge.top{top:24px;right:0;animation:float 4s ease-in-out infinite}
+.float-badge.bottom{bottom:32px;left:0;animation:float 4s ease-in-out infinite 2s}
+.badge-check{color:#4CAF50;font-weight:700}
+.phone-shot{
+  width:300px;
+  max-width:100%;
+  border-radius:36px;
+  box-shadow:0 28px 60px rgba(0,0,0,0.16);
+  border:8px solid rgba(30,30,30,0.95);
+  background:#111
+}
+
+/* HELPS SECTION */
+.helps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:860px;margin:0 auto}
+.help-item{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  background:#fff;
+  border-radius:var(--radius-sm);
+  padding:14px 16px;
+  border:1px solid var(--border);
+  transition:var(--transition)
+}
+.help-item:hover{
+  border-color:var(--peach);
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(255,106,77,0.08)
+}
+.help-icon{font-size:19px;flex-shrink:0}
+.help-text{font-size:13.5px;font-weight:500}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feature-card{
+  border-radius:var(--radius);
+  padding:26px;
+  border:1px solid rgba(255,106,77,0.08);
+  transition:var(--transition);
+  cursor:default
+}
+.feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.feature-icon-wrap{
+  width:48px;height:48px;border-radius:13px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px
+}
+.feature-icon{font-size:22px}
+.feature-title{font-family:var(--font-body);font-size:15px;font-weight:700;margin-bottom:7px}
+.feature-desc{font-size:13.5px;line-height:1.6}
+.coming-soon-row{margin-top:44px;text-align:center}
+.cs-label{
+  font-size:11px;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:14px
+}
+.cs-cards{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.cs-card{
+  display:flex;align-items:center;gap:9px;
+  background:rgba(200,182,255,0.1);
+  border:1.5px dashed rgba(142,124,255,0.3);
+  border-radius:var(--radius-pill);
+  padding:9px 18px;
+  font-size:13.5px;font-weight:500;color:var(--muted)
+}
+
+/* WHO SECTION */
+.who-inner{display:grid;grid-template-columns:1.1fr 0.9fr;gap:68px;align-items:center}
+.who-list{list-style:none;display:flex;flex-direction:column;gap:14px;margin:26px 0 30px}
+.who-list li{display:flex;align-items:flex-start;gap:11px;font-size:14.5px;color:var(--muted);line-height:1.6}
+.who-list li strong{color:var(--text)}
+.who-check{color:var(--coral);font-size:12px;flex-shrink:0;margin-top:3px}
+.quote-card{
+  background:linear-gradient(135deg,var(--coral) 0%,#FF8C6A 100%);
+  border-radius:var(--radius);
+  padding:38px 34px;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 16px 48px rgba(255,106,77,0.28)
+}
+.quote-card::before{
+  content:"";
+  position:absolute;
+  top:-40px;right:-40px;
+  width:170px;height:170px;border-radius:50%;
+  background:rgba(255,255,255,0.07)
+}
+.quote-marks{
+  font-family:var(--font-display);
+  font-size:68px;
+  line-height:0.8;
+  color:rgba(255,255,255,0.28);
+  margin-bottom:14px
+}
+.quote-text{font-size:17px;line-height:1.65;margin-bottom:26px;font-style:italic;position:relative;z-index:1}
+.quote-author{display:flex;align-items:center;gap:13px}
+.quote-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px
+}
+.quote-author-name{font-size:14px;font-weight:600}
+.quote-author-role{font-size:12px;opacity:0.72}
+
+/* REAL SCREENSHOT SECTION */
+.app-preview-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+  align-items:start
+}
+.preview-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:22px;
+  box-shadow:var(--shadow)
+}
+.preview-card img{
+  width:100%;
+  border-radius:26px;
+  display:block
+}
+.preview-caption{
+  margin-top:14px;
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.6
+}
+
+/* FOUNDER SECTION */
+.founder-section{background:linear-gradient(135deg,rgba(255,214,199,0.28) 0%,rgba(200,182,255,0.14) 100%)}
+.founder-inner{display:grid;grid-template-columns:auto 1fr;gap:68px;align-items:center}
+.founder-art{position:relative;width:200px;height:200px;flex-shrink:0}
+.founder-orb{position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,var(--peach),var(--apricot));opacity:0.72}
+.founder-orb-sm{position:absolute;width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,var(--lilac),var(--lilac-deep));top:-18px;right:-18px;opacity:0.6}
+.founder-initials{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-size:76px;color:var(--coral);z-index:1
+}
+.founder-text{display:flex;flex-direction:column;gap:15px;margin-bottom:22px}
+.founder-text p{font-size:15.5px;color:var(--muted);line-height:1.75}
+.founder-mission{
+  display:flex;align-items:flex-start;gap:11px;background:#fff;border-radius:var(--radius-sm);
+  padding:16px 18px;margin-bottom:22px;border:1px solid var(--border)
+}
+.founder-mission p{font-size:14.5px;color:var(--text);line-height:1.6}
+
+/* SAFETY */
+.safety-section{padding:48px 0}
+.safety-card{
+  display:flex;align-items:flex-start;gap:18px;background:rgba(255,106,77,0.05);
+  border:1px solid rgba(255,106,77,0.15);border-radius:var(--radius);
+  padding:30px 34px;max-width:780px;margin:0 auto
+}
+.safety-icon{font-size:26px;flex-shrink:0}
+.safety-text h3{font-family:var(--font-body);font-size:15.5px;font-weight:700;margin-bottom:7px}
+.safety-text p{font-size:13.5px;color:var(--muted);line-height:1.7}
+
+/* CTA */
+.cta-section{padding-bottom:72px}
+.cta-inner{
+  position:relative;background:var(--text);border-radius:28px;padding:76px 56px;text-align:center;overflow:hidden
+}
+.cta-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 50% 60% at 20% 50%,rgba(255,214,199,0.11) 0%,transparent 55%),
+    radial-gradient(ellipse 40% 50% at 80% 40%,rgba(200,182,255,0.09) 0%,transparent 55%)
+}
+.cta-title{position:relative;z-index:1;font-size:clamp(26px,4vw,46px);color:#fff;margin-bottom:14px;letter-spacing:-0.02em}
+.cta-sub{position:relative;z-index:1;font-size:16.5px;color:rgba(255,255,255,0.58);max-width:480px;margin:0 auto 34px;line-height:1.65}
+.cta-actions{position:relative;z-index:1;display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.btn-ghost-light{
+  display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);
+  color:rgba(255,255,255,0.75);font-family:var(--font-body);font-size:14.5px;font-weight:500;
+  padding:12px 22px;border-radius:var(--radius-pill);border:1px solid rgba(255,255,255,0.15);
+  cursor:pointer;transition:var(--transition);text-decoration:none
+}
+.btn-ghost-light:hover{background:rgba(255,255,255,0.14)}
+
+/* SECTION HEADS */
+.section-head{text-align:center;margin-bottom:52px}
+.section-title{font-size:clamp(26px,4vw,44px);margin-bottom:13px;letter-spacing:-0.02em}
+.section-sub{font-size:16.5px;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.65}
+
+/* ABOUT PAGE */
+.about-hero{position:relative;padding:150px 0 72px;overflow:hidden}
+.about-hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 50% 70% at 80% 20%,rgba(200,182,255,0.3) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 10% 80%,rgba(255,214,199,0.42) 0%,transparent 60%),
+    var(--bg)
+}
+.about-hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto;text-align:center}
+.about-h1{font-size:clamp(34px,5vw,62px);margin-bottom:18px;letter-spacing:-0.03em}
+.about-sub{font-size:17.5px;color:var(--muted);line-height:1.7}
+.two-col{display:grid;grid-template-columns:1fr 0.8fr;gap:68px;align-items:start}
+.body-text{display:flex;flex-direction:column;gap:17px}
+.body-text p{font-size:15.5px;color:var(--muted);line-height:1.75}
+.side-card{display:flex;flex-direction:column;gap:15px;position:sticky;top:96px}
+.mission-card{
+  background:linear-gradient(135deg,var(--coral) 0%,#FF8C6A 100%);
+  border-radius:var(--radius);padding:30px;color:#fff
+}
+.mission-card h3,.vision-card h3{
+  font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.07em;
+  text-transform:uppercase;opacity:0.78;margin-bottom:9px
+}
+.mission-card p,.vision-card p{font-size:15.5px;line-height:1.6}
+.vision-card{
+  background:linear-gradient(135deg,var(--lilac) 0%,var(--lilac-deep) 100%);
+  border-radius:var(--radius);padding:30px;color:#fff
+}
+.why-section{background:linear-gradient(135deg,rgba(255,214,199,0.2) 0%,rgba(200,182,255,0.1) 100%)}
+.why-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:60px;align-items:start}
+.why-text{display:flex;flex-direction:column;gap:16px}
+.why-text p{font-size:15.5px;color:var(--muted);line-height:1.75}
+.why-stats{display:flex;flex-direction:column;gap:20px}
+.why-stat{background:#fff;border-radius:var(--radius-sm);padding:22px;border:1px solid var(--border)}
+.why-stat-num{display:block;font-family:var(--font-display);font-size:26px;color:var(--coral);margin-bottom:3px}
+.why-stat-lbl{font-size:12.5px;color:var(--muted);line-height:1.5}
+.values-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.for-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.for-card{
+  background:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--border);transition:var(--transition)
+}
+.for-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.for-card-icon{font-size:30px;margin-bottom:14px;display:block}
+.for-card h3{
+  font-family:var(--font-body);font-size:16px;font-weight:700;margin-bottom:9px;display:flex;align-items:center;gap:9px;flex-wrap:wrap
+}
+.for-card p{font-size:13.5px;color:var(--muted);line-height:1.65}
+.cta-banner{
+  background:var(--text);border-radius:18px;padding:38px 44px;display:flex;align-items:center;justify-content:space-between;gap:28px
+}
+.cta-banner h2{font-family:var(--font-display);font-size:clamp(20px,3vw,32px);color:#fff;margin-bottom:6px}
+.cta-banner p{font-size:14.5px;color:rgba(255,255,255,0.6)}
+
+/* LEGAL PAGES */
+.legal-page{position:relative;padding-top:140px;padding-bottom:88px;min-height:100vh}
+.legal-bg{
+  position:absolute;top:0;left:0;right:0;height:300px;
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 10%,rgba(255,214,199,0.35) 0%,transparent 55%),
+    radial-gradient(ellipse 40% 60% at 10% 60%,rgba(200,182,255,0.2) 0%,transparent 55%),
+    var(--bg)
+}
+.legal-inner-wrap{position:relative;z-index:1;max-width:740px;margin:0 auto}
+.legal-header{margin-bottom:52px}
+.legal-title{font-size:clamp(30px,5vw,50px);letter-spacing:-0.03em;margin-bottom:7px}
+.legal-date{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.legal-intro{font-size:16.5px;color:var(--muted);line-height:1.7;padding-bottom:26px;border-bottom:1px solid var(--border)}
+.legal-body{display:flex;flex-direction:column}
+.legal-section{padding:28px 0;border-bottom:1px solid var(--border)}
+.legal-section:last-child{border-bottom:none}
+.legal-section h2{font-family:var(--font-body);font-size:17px;font-weight:700;margin-bottom:13px}
+.legal-section p{font-size:14.5px;color:var(--muted);line-height:1.75;margin-bottom:11px}
+.legal-section p:last-child{margin-bottom:0}
+.legal-section ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin:13px 0;padding-left:0}
+.legal-section ul li{
+  font-size:14.5px;color:var(--muted);line-height:1.7;padding-left:18px;position:relative
+}
+.legal-section ul li::before{
+  content:"✦";position:absolute;left:0;top:1px;font-size:9px;color:var(--coral)
+}
+.legal-section ul li strong,.legal-section p strong{color:var(--text);font-weight:600}
+.legal-link{color:var(--coral);font-weight:500;text-decoration:underline;text-decoration-color:rgba(255,106,77,0.3)}
+.contact-box{
+  display:inline-flex;align-items:center;gap:9px;background:rgba(255,214,199,0.32);
+  border:1px solid rgba(255,106,77,0.15);border-radius:var(--radius-sm);padding:13px 18px;margin-top:7px;font-size:14.5px;font-weight:500
+}
+
+/* SUPPORT PAGE */
+.support-page{position:relative;padding-top:140px;padding-bottom:88px}
+.support-bg{
+  position:absolute;top:0;left:0;right:0;height:300px;
+  background:
+    radial-gradient(ellipse 50% 80% at 70% 20%,rgba(200,182,255,0.3) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 60% at 10% 70%,rgba(255,214,199,0.4) 0%,transparent 60%),
+    var(--bg)
+}
+.support-inner{position:relative;z-index:1;max-width:740px;margin:0 auto}
+.support-header{text-align:center;margin-bottom:44px}
+.support-title{font-size:clamp(30px,5vw,50px);letter-spacing:-0.03em;margin-bottom:11px}
+.support-sub{font-size:17px;color:var(--muted)}
+.contact-card{
+  display:flex;align-items:center;justify-content:space-between;gap:22px;background:var(--text);
+  border-radius:var(--radius);padding:34px 38px;margin-bottom:52px;flex-wrap:wrap
+}
+.contact-left{display:flex;align-items:flex-start;gap:18px;flex:1}
+.contact-left h2{font-family:var(--font-body);font-size:19px;font-weight:700;color:#fff;margin-bottom:5px}
+.contact-left p{font-size:13.5px;color:rgba(255,255,255,0.58);line-height:1.6}
+.faq-title{font-size:clamp(20px,3vw,30px);margin-bottom:24px}
+.faq-item{padding:22px 0;border-bottom:1px solid var(--border)}
+.faq-item h3{font-family:var(--font-body);font-size:15.5px;font-weight:700;margin-bottom:7px}
+.faq-item p{font-size:14.5px;color:var(--muted);line-height:1.65}
+.help-centre{
+  display:flex;align-items:center;gap:18px;background:rgba(200,182,255,0.1);
+  border:1.5px dashed rgba(142,124,255,0.3);border-radius:var(--radius);padding:26px 30px;margin-top:44px;flex-wrap:wrap
+}
+.help-centre h3{font-family:var(--font-body);font-size:16px;font-weight:700;margin-bottom:5px}
+.help-centre p{font-size:13.5px;color:var(--muted)}
+.help-centre>div{flex:1}
+
+/* FOOTER */
+footer{background:var(--text);color:#fff;padding:68px 0 28px}
+.footer-top{
+  display:grid;grid-template-columns:1.3fr 1fr;gap:60px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,0.07)
+}
+.footer-brand{display:flex;flex-direction:column;gap:14px}
+.footer-logo{display:flex;align-items:center;gap:10px}
+.footer-logo img{width:28px;height:28px;object-fit:contain}
+.footer-logo-text{font-family:var(--font-display);font-size:23px;color:#fff}
+.footer-tagline{font-size:14px;color:rgba(255,255,255,0.5);max-width:280px;line-height:1.6}
+.footer-email{font-size:13.5px;color:var(--peach);font-weight:500;transition:color 0.2s}
+.footer-email:hover{color:#fff}
+.footer-links{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.footer-link-group{display:flex;flex-direction:column;gap:11px}
+.footer-group-title{
+  font-family:var(--font-body);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(255,255,255,0.28);margin-bottom:3px
+}
+.footer-link{font-size:13.5px;color:rgba(255,255,255,0.55);transition:color 0.2s;cursor:pointer}
+.footer-link:hover{color:var(--peach)}
+.footer-disclaimer{padding:24px 0;border-bottom:1px solid rgba(255,255,255,0.07)}
+.footer-disclaimer p{font-size:12px;color:rgba(255,255,255,0.27);line-height:1.7;max-width:700px}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;gap:12px}
+.footer-copy{font-size:12.5px;color:rgba(255,255,255,0.32)}
+.footer-made{font-size:12.5px;color:rgba(255,255,255,0.22);font-style:italic}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.animate-fade-up{animation:fadeUp 0.75s ease both}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-inner,.who-inner,.founder-inner,.two-col,.why-grid,.app-preview-grid{grid-template-columns:1fr;gap:40px}
+  .features-grid{grid-template-columns:repeat(2,1fr)}
+  .helps-grid{grid-template-columns:repeat(2,1fr)}
+  .values-grid,.for-cards{grid-template-columns:1fr 1fr}
+  .hero{padding:120px 0 64px}
+  .hero-visual{order:-1}
+  .hero-h1,.hero-sub,.hero-ctas{text-align:center}
+  .hero-sub{margin:0 auto 34px}
+  .hero-ctas{justify-content:center}
+  .founder-art{margin:0 auto}
+  .side-card{position:static}
+  .cta-banner{flex-direction:column;text-align:center;padding:32px 26px}
+}
+@media(max-width:640px){
+  .nav-links{gap:14px;flex-wrap:wrap;justify-content:flex-end}
+  .features-grid{grid-template-columns:1fr}
+  .helps-grid{grid-template-columns:1fr}
+  .values-grid,.for-cards{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:6px;text-align:center}
+  .cta-inner{padding:44px 24px;border-radius:18px}
+  .contact-card{flex-direction:column;padding:26px}
+  .safety-card{flex-direction:column;gap:11px;padding:22px}
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="container nav-inner">
+    <div class="logo" onclick="showPage('home')">
+      <img src="logo.jpg.jpg" alt="Saaci logo">
+      <span class="logo-text">saaci</span>
+    </div>
+    <div class="nav-links">
+      <span class="nav-link" onclick="showPage('home')">Home</span>
+      <span class="nav-link" onclick="showPage('about')">About</span>
+      <span class="nav-link" onclick="showPage('support')">Support</span>
+      <a href="mailto:saaci.app@hotmail.com" class="btn-primary btn-primary-nav">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="page-home" class="page-section active">
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="animate-fade-up">
+          <span class="tag u-inline u-mb-22">Sickle Cell Support App</span>
+          <h1 class="hero-h1">Your health,<br><span class="gradient-text">tracked with care.</span></h1>
+          <p class="hero-sub">Saaci is a calm, organised companion for people living with sickle cell disease. Track symptoms, manage medications, prepare for appointments, understand flare risk, and feel more supported every day.</p>
+          <div class="hero-ctas">
+            <span class="btn-primary" onclick="showPage('about')">Learn more</span>
+            <a href="mailto:saaci.app@hotmail.com" class="btn-outline">Get in touch</a>
+          </div>
+          <p class="hero-note">Not a medical device. Always consult your care team.</p>
+        </div>
+
+        <div class="hero-visual">
+          <div class="phone-wrap">
+            <div class="float-badge top"><span>💧</span><span>Hydration logged</span><span class="badge-check">✓</span></div>
+            <div class="float-badge bottom"><span>🌿</span><span>Breathwork complete</span><span class="badge-check">✓</span></div>
+            <img src="saaci-home.jpg.PNG" alt="Saaci home screen" class="phone-shot">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag u-inline u-mb-15">What Saaci does</span>
+        <h2 class="section-title">Everything in one place</h2>
+        <p class="section-sub">Designed around the real daily needs of people living with sickle cell.</p>
+      </div>
+      <div class="helps-grid">
+        <div class="help-item"><span class="help-icon">📊</span><span class="help-text">Tracking symptoms and patterns</span></div>
+        <div class="help-item"><span class="help-icon">🎯</span><span class="help-text">Preparing for clinic appointments</span></div>
+        <div class="help-item"><span class="help-icon">💧</span><span class="help-text">Staying on top of hydration</span></div>
+        <div class="help-item"><span class="help-icon">💊</span><span class="help-text">Managing medications and reminders</span></div>
+        <div class="help-item"><span class="help-icon">🩸</span><span class="help-text">Logging transfusions and iron labs</span></div>
+        <div class="help-item"><span class="help-icon">🆘</span><span class="help-text">Storing emergency medical information</span></div>
+        <div class="help-item"><span class="help-icon">🫁</span><span class="help-text">Calming breathwork during hard moments</span></div>
+        <div class="help-item"><span class="help-icon">📚</span><span class="help-text">Understanding your condition better</span></div>
+        <div class="help-item"><span class="help-icon">🤖</span><span class="help-text">Getting general guidance between appointments</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-gradient">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag u-inline u-mb-15">Features</span>
+        <h2 class="section-title">Built for your everyday</h2>
+        <p class="section-sub">Every feature in Saaci was shaped by the realities of managing sickle cell disease.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card feature-card-white">
+          <div class="feature-icon-wrap feature-icon-peach"><span class="feature-icon">📓</span></div>
+          <div class="feature-title">Health Logging</div>
+          <div class="feature-desc feature-desc-muted">Record symptoms, energy levels, and daily wellbeing in one place. Spot patterns over time and arrive at appointments prepared.</div>
+        </div>
+
+        <div class="feature-card feature-card-white">
+          <div class="feature-icon-wrap feature-icon-lilac"><span class="feature-icon">💧</span></div>
+          <div class="feature-title">Hydration Tracking</div>
+          <div class="feature-desc feature-desc-muted">Set your daily water goal and log intake with a tap. Staying hydrated is one of the most important parts of sickle cell management.</div>
+        </div>
+
+        <div class="feature-card feature-card-white">
+          <div class="feature-icon-wrap feature-icon-apricot"><span class="feature-icon">🌡️</span></div>
+          <div class="feature-title">Pain Tracking</div>
+          <div class="feature-desc feature-desc-muted">Log pain location, intensity, and duration to build a clear picture of your patterns. Your pain history is always ready when you need it.</div>
+        </div>
+
+        <div class="feature-card feature-card-white">
+          <div class="feature-icon-wrap feature-icon-peach"><span class="feature-icon">🌙</span></div>
+          <div class="feature-title">Mood Tracking</div>
+          <div class="feature-desc feature-desc-muted">Track how you're feeling day to day and look back over time to understand what helps and what doesn't.</div>
+        </div>
+
+        <div class="feature-card feature-card-white">
+          <div class="feature-icon-wrap feature-icon-lilac"><span class="feature-icon">💊</span></div>
+          <div class="feature-title">Medication Reminders</div>
+          <div class="feature-desc feature-desc-muted">Never miss a dose. Set up reminders, log what you've taken, and keep a clear medication history at your fingertips.</div>
+        </div>
+
+        <div class="feature-card feature-card-white">
+          <div class="feature-icon-wrap feature-icon-apricot"><span class="feature-icon">📅</span></div>
+          <div class="feature-title">Appointment Support</div>
+          <div class="feature-desc feature-desc-muted">Prepare for your next clinic visit with your logged health data. Know what to say, what to ask, and feel confident walking in the door.</div>
+        </div>
+
+        <div class="feature-card feature-card-white">
+          <div class="feature-icon-wrap feature-icon-peach"><span class="feature-icon">🩸</span></div>
+          <div class="feature-title">Transfusion & Iron Labs</div>
+          <div class="feature-desc feature-desc-muted">Log transfusion dates and track ferritin and iron lab results over time, because managing iron overload matters too.</div>
+        </div>
+
+        <div class="feature-card feature-card-white">
+          <div class="feature-icon-wrap feature-icon-lilac"><span class="feature-icon">⚠️</span></div>
+          <div class="feature-title">Flare Risk</div>
+          <div class="feature-desc feature-desc-muted">Saaci estimates how likely you may be to have an episode based on recent patterns such as hydration, pain frequency, mood, stress, and overall symptom activity. It is an early warning support feature, not a diagnosis.</div>
+        </div>
+
+        <div class="feature-card feature-card-coral">
+          <div class="feature-icon-wrap feature-icon-light"><span class="feature-icon">🆘</span></div>
+          <div class="feature-title feature-title-light">Emergency Medical Card</div>
+          <div class="feature-desc feature-desc-light">Store your key medical information — diagnosis, allergies, medications, and emergency contacts — so it's accessible when it matters most.</div>
+        </div>
+
+        <div class="feature-card feature-card-white">
+          <div class="feature-icon-wrap feature-icon-lilac"><span class="feature-icon">🫁</span></div>
+          <div class="feature-title">Guided Breathwork</div>
+          <div class="feature-desc feature-desc-muted">Calming, evidence-informed breathing exercises designed to help you manage stress, anxiety, and moments of crisis.</div>
+        </div>
+
+        <div class="feature-card feature-card-white">
+          <div class="feature-icon-wrap feature-icon-apricot"><span class="feature-icon">📚</span></div>
+          <div class="feature-title">Sickle Cell Education Library</div>
+          <div class="feature-desc feature-desc-muted">Learn about your condition in plain, accessible language — from crises and hydroxyurea to iron chelation.</div>
+        </div>
+
+        <div class="feature-card feature-card-white">
+          <div class="feature-icon-wrap feature-icon-peach"><span class="feature-icon">🤖</span></div>
+          <div class="feature-title">AI Nurse Support</div>
+          <div class="feature-desc feature-desc-muted">Saaci's AI Nurse provides general information and guidance to help you understand your condition clearly and calmly between appointments.</div>
+        </div>
+      </div>
+
+      <div class="coming-soon-row">
+        <p class="cs-label">Coming soon</p>
+        <div class="cs-cards">
+          <div class="cs-card"><span>🎮</span><span>Mini Games</span><span class="tag tag-lilac tag-soon">Soon</span></div>
+          <div class="cs-card"><span>✅</span><span>Habit Tracker</span><span class="tag tag-lilac tag-soon">Soon</span></div>
+          <div class="cs-card"><span>🍽️</span><span>Food Analysis</span><span class="tag tag-lilac tag-soon">Soon</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag u-inline u-mb-15">Real app preview</span>
+        <h2 class="section-title">See Saaci in action</h2>
+        <p class="section-sub">Actual screens from the Saaci app experience.</p>
+      </div>
+
+      <div class="app-preview-grid">
+        <div class="preview-card">
+          <img src="saaci-home.jpg.PNG" alt="Saaci home screen preview">
+          <p class="preview-caption">The home screen brings together your daily overview, flare risk, hydration, pain, and weather-related context in one calm space.</p>
+        </div>
+
+        <div class="preview-card">
+          <img src="saaci-logs.jpg.PNG" alt="Saaci logs screen preview">
+          <p class="preview-caption">The logs experience helps you understand mood patterns, symptom trends, and what may be influencing how you feel over time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="who-inner">
+        <div>
+          <span class="tag u-inline u-mb-15">Who it's for</span>
+          <h2 class="section-title text-left">Made for people living with sickle cell</h2>
+          <p class="who-intro">Saaci is for anyone who wants a clearer, calmer way to manage their condition day to day.</p>
+          <ul class="who-list">
+            <li><span class="who-check">✦</span><span><strong>People living with sickle cell disease</strong> — who want one organised place to manage their health</span></li>
+            <li><span class="who-check">✦</span><span><strong>Teens and adults</strong> navigating symptoms, medications, pain, and appointments on their own</span></li>
+            <li><span class="who-check">✦</span><span><strong>Anyone managing iron overload</strong>, transfusion schedules, or frequent hospital visits</span></li>
+            <li><span class="who-check">✦</span><span><strong>People who want to feel informed</strong> about their own condition — not just patients</span></li>
+            <li><span class="who-check">✦</span><span><strong>Caregivers and family members</strong> — support for this is coming soon</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="quote-card">
+            <div class="quote-marks">"</div>
+            <p class="quote-text">Managing a chronic condition is a full-time job on top of everything else. Saaci is here to make that job a little lighter.</p>
+            <div class="quote-author">
+              <div class="quote-avatar">✦</div>
+              <div><p class="quote-author-name">Saaci Team</p><p class="quote-author-role">Built for the community</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section founder-section">
+    <div class="container">
+      <div class="founder-inner">
+        <div class="founder-art">
+          <div class="founder-orb"></div>
+          <div class="founder-orb-sm"></div>
+          <div class="founder-initials">S</div>
+        </div>
+        <div>
+          <span class="tag u-inline u-mb-18">Why Saaci exists</span>
+          <h2 class="section-title text-left u-mb-22">Created by someone who cares</h2>
+          <div class="founder-text">
+            <p>Saaci was created out of a genuine need for better support and organisation for people living with sickle cell disease. The reality of managing this condition — the pain, the appointments, the medications, the labs, the fatigue — often comes with very little in the way of practical day-to-day tools designed with you in mind.</p>
+            <p>The founder behind Saaci has seen firsthand how overwhelming it can be to navigate a chronic illness without the right support structure. That experience became the foundation for everything Saaci is built to do.</p>
+            <p>The goal is not to replace your care team. The goal is to help you show up to appointments informed, to understand your day-to-day patterns better, and to feel less alone while managing a serious condition.</p>
+          </div>
+          <div class="founder-mission">
+            <span class="founder-mission-icon">🎯</span>
+            <p><strong>Our mission:</strong> To give people living with sickle cell disease the tools, clarity, and calm they deserve every day.</p>
+          </div>
+          <span class="btn-outline btn-outline-click" onclick="showPage('about')">More about Saaci →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="safety-section">
+    <div class="container">
+      <div class="safety-card">
+        <span class="safety-icon">🩺</span>
+        <div class="safety-text">
+          <h3>A supportive tool, not a replacement for medical care</h3>
+          <p>Saaci is designed to help you track, organise, and feel more supported, but it is not a medical device and is not a substitute for professional medical advice, diagnosis, or treatment. If you are experiencing a sickle cell crisis or a medical emergency, contact your care team or emergency services immediately.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section section">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-bg"></div>
+        <span class="tag tag-lilac u-inline u-mb-18">Get in touch</span>
+        <h2 class="cta-title">Have questions about Saaci?</h2>
+        <p class="cta-sub">Whether you have feedback, a question, or just want to know more, reach out directly.</p>
+        <div class="cta-actions">
+          <a href="mailto:saaci.app@hotmail.com" class="btn-primary">Contact us</a>
+          <span class="btn-ghost-light" onclick="showPage('support')">Visit support</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ABOUT PAGE -->
+<div id="page-about" class="page-section">
+  <section class="about-hero">
+    <div class="about-hero-bg"></div>
+    <div class="container">
+      <div class="about-hero-inner">
+        <span class="tag u-inline u-mb-18">About</span>
+        <h1 class="about-h1">A calmer way to live with <span class="gradient-text">sickle cell</span></h1>
+        <p class="about-sub">Saaci was created to give people living with sickle cell disease the organised, supportive, and empowering tools that are so often missing from the everyday experience of managing a chronic condition.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <span class="tag u-inline u-mb-18">What is Saaci?</span>
+          <h2 class="about-title">More than a health tracker</h2>
+          <div class="body-text">
+            <p>Saaci is a mobile app built specifically for people living with sickle cell disease. It brings together health logging, hydration tracking, pain management, medication reminders, appointment preparation, breathwork, education, emergency information, and flare risk support in one calm, well-designed space.</p>
+            <p>Most health apps are generic. They are built for a general audience and ask you to fit your experience around their templates. Saaci starts from the other direction: it is built around the specific lived realities of sickle cell disease.</p>
+            <p>The features in Saaci are not there just to look impressive on a feature list. They reflect what people actually deal with: tracking ferritin levels, logging pain episodes, managing hydroxyurea, preparing for haematology appointments, staying hydrated, and finding moments of calm on difficult days.</p>
+          </div>
+        </div>
+        <div class="side-card">
+          <div class="mission-card">
+            <span class="about-card-icon">🎯</span>
+            <h3>Our mission</h3>
+            <p>To give people living with sickle cell disease the tools, clarity, and calm they deserve every day.</p>
+          </div>
+          <div class="vision-card">
+            <span class="about-card-icon">🌍</span>
+            <h3>Our vision</h3>
+            <p>A world where chronic illness is managed with the same quality of support, information, and dignity as any other health condition.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section why-section">
+    <div class="container">
+      <span class="tag u-inline u-mb-18">Why it exists</span>
+      <h2 class="why-title">Sickle cell is underserved. That needs to change.</h2>
+      <div class="why-grid">
+        <div class="why-text">
+          <p>People living with sickle cell disease often have to manage a huge amount of health information without having the right tools to organise it clearly. That gap is what Saaci exists to help close.</p>
+          <p>Saaci was created from a place of genuine care and understanding of how overwhelming chronic illness management can feel, especially between appointments, hospital visits, and moments of crisis.</p>
+          <p>The app is not about replacing doctors or clinical care. It is about strengthening what happens in between: the structure, awareness, and support that make day-to-day life more manageable.</p>
+        </div>
+        <div class="why-stats">
+          <div class="why-stat"><span class="why-stat-num">Daily</span><span class="why-stat-lbl">support for symptom awareness, hydration, logging, and self-management</span></div>
+          <div class="why-stat"><span class="why-stat-num">Clearer</span><span class="why-stat-lbl">patterns for pain, mood, and triggers over time</span></div>
+          <div class="why-stat"><span class="why-stat-num">Calmer</span><span class="why-stat-lbl">tools designed to reduce friction, not add more stress</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag u-inline u-mb-14">Our values</span>
+        <h2 class="section-title">What guides everything we build</h2>
+      </div>
+      <div class="values-grid">
+        <div class="card"><span class="values-icon">🤲</span><h3 class="values-title">Built with purpose</h3><p class="values-copy">Saaci exists because people living with sickle cell deserve better tools, not as an afterthought, but as a starting point.</p></div>
+        <div class="card"><span class="values-icon">🎯</span><h3 class="values-title">Designed for clarity</h3><p class="values-copy">Managing a complex condition is hard enough. Saaci removes friction so you can focus on your health, not the admin around it.</p></div>
+        <div class="card"><span class="values-icon">🌿</span><h3 class="values-title">Calm by design</h3><p class="values-copy">Every part of Saaci is intentionally calming. You deserve a space that supports you, not overwhelms you.</p></div>
+        <div class="card"><span class="values-icon">🔒</span><h3 class="values-title">Privacy first</h3><p class="values-copy">Your health data is sensitive and personal. We take that seriously and do not use your data for anything beyond powering your experience.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag u-inline u-mb-14">Who Saaci is for</span>
+        <h2 class="section-title">You should not have to manage this alone</h2>
+        <p class="who-for-sub">Saaci is built primarily for people living with sickle cell disease and will expand to support caregivers and families too.</p>
+      </div>
+      <div class="for-cards">
+        <div class="for-card"><span class="for-card-icon">🧑</span><h3>People living with SCD</h3><p>Teens and adults managing symptoms, medications, pain, and appointments. Saaci is made for you.</p></div>
+        <div class="for-card"><span class="for-card-icon">🏥</span><h3>Those with complex care needs</h3><p>If you are managing transfusions, iron overload, hydroxyurea, or frequent hospital visits, Saaci tracks what matters.</p></div>
+        <div class="for-card for-card-soon"><span class="for-card-icon">👨‍👩‍👧</span><h3>Caregivers <span class="tag tag-lilac tag-soon">Coming soon</span></h3><p>Family members and carers will soon be able to use Saaci to support their loved ones more effectively.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight-bottom">
+    <div class="container">
+      <div class="cta-banner">
+        <div><h2>Want to know more about Saaci?</h2><p>Reach out with any questions. We are happy to hear from you.</p></div>
+        <a href="mailto:saaci.app@hotmail.com" class="btn-primary">Get in touch</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PRIVACY PAGE -->
+<div id="page-privacy" class="page-section">
+  <div class="legal-page">
+    <div class="legal-bg"></div>
+    <div class="container">
+      <div class="legal-inner-wrap">
+        <div class="legal-header">
+          <span class="tag u-inline u-mb-14">Legal</span>
+          <h1 class="legal-title">Privacy Policy</h1>
+          <p class="legal-date">Effective Date: [Add Date]</p>
+          <p class="legal-intro">Saaci is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and protect your information when you use our app.</p>
+        </div>
+        <div class="legal-body">
+          <div class="legal-section">
+            <h2>1. Information We Collect</h2>
+            <p>We may collect the following information:</p>
+            <ul>
+              <li>Account information such as your email address</li>
+              <li>Health-related data you choose to log, including hydration, pain, mood, medications, and other personal health entries</li>
+              <li>Basic device and usage data to improve app performance</li>
+            </ul>
+          </div>
+
+          <div class="legal-section">
+            <h2>2. How We Use Your Information</h2>
+            <p>We use your information to:</p>
+            <ul>
+              <li>Provide and improve the Saaci app experience</li>
+              <li>Track your health logs and provide insights such as trends and flare risk</li>
+              <li>Support features such as AI Nurse guidance</li>
+              <li>Maintain app performance and reliability</li>
+            </ul>
+          </div>
+
+          <div class="legal-section">
+            <h2>3. Data Storage and Security</h2>
+            <p>Your data is stored securely using trusted cloud services. We take reasonable steps to protect your information from unauthorised access, loss, or misuse.</p>
+          </div>
+
+          <div class="legal-section">
+            <h2>4. Data Sharing</h2>
+            <p>We do not sell your personal or health data.</p>
+            <p>We may share data only:</p>
+            <ul>
+              <li>With trusted service providers that help operate the app</li>
+              <li>If required by law or legal process</li>
+            </ul>
+          </div>
+
+          <div class="legal-section">
+            <h2>5. Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+              <li>Access and update your data</li>
+              <li>Request deletion of your account and associated data</li>
+            </ul>
+          </div>
+
+          <div class="legal-section">
+            <h2>6. Medical Disclaimer</h2>
+            <p>Saaci is designed for informational and support purposes only. It does not provide medical advice, diagnosis, or treatment. Always consult a qualified healthcare professional for medical concerns.</p>
+          </div>
+
+          <div class="legal-section">
+            <h2>7. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. Continued use of the app means you accept any updates.</p>
+          </div>
+
+          <div class="legal-section">
+            <h2>8. Contact</h2>
+            <p>If you have any questions, contact us at:</p>
+            <div class="contact-box"><span>📧</span><a href="mailto:saaci.app@hotmail.com" class="legal-link">saaci.app@hotmail.com</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TERMS PAGE -->
+<div id="page-terms" class="page-section">
+  <div class="legal-page">
+    <div class="legal-bg"></div>
+    <div class="container">
+      <div class="legal-inner-wrap">
+        <div class="legal-header">
+          <span class="tag u-inline u-mb-14">Legal</span>
+          <h1 class="legal-title">Terms of Use</h1>
+          <p class="legal-date">Effective Date: [Add Date]</p>
+          <p class="legal-intro">By using Saaci, you agree to the following terms.</p>
+        </div>
+        <div class="legal-body">
+          <div class="legal-section"><h2>1. Use of the App</h2><p>Saaci is intended to support individuals managing sickle cell health. It allows users to log health data and receive general guidance.</p></div>
+          <div class="legal-section"><h2>2. Not Medical Advice</h2><p>Saaci does not provide medical advice. The information and guidance in the app are for informational purposes only.</p><p>Always seek advice from a qualified healthcare professional before making medical decisions.</p></div>
+          <div class="legal-section"><h2>3. User Responsibility</h2><p>You are responsible for:</p><ul><li>The accuracy of the data you enter</li><li>Any decisions made based on app information</li></ul></div>
+          <div class="legal-section"><h2>4. Account Security</h2><p>You are responsible for maintaining the confidentiality of your account and password.</p></div>
+          <div class="legal-section"><h2>5. Limitation of Liability</h2><p>Saaci is not liable for any direct or indirect damages resulting from:</p><ul><li>Use of the app</li><li>Reliance on its content</li><li>Health decisions made by users</li></ul></div>
+          <div class="legal-section"><h2>6. Changes to the App</h2><p>We may update or modify Saaci at any time without notice.</p></div>
+          <div class="legal-section"><h2>7. Termination</h2><p>We reserve the right to suspend or terminate accounts that misuse the app.</p></div>
+          <div class="legal-section"><h2>8. Contact</h2><p>For support, contact:</p><div class="contact-box"><span>📧</span><a href="mailto:saaci.app@hotmail.com" class="legal-link">saaci.app@hotmail.com</a></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUPPORT PAGE -->
+<div id="page-support" class="page-section">
+  <div class="support-page">
+    <div class="support-bg"></div>
+    <div class="container">
+      <div class="support-inner">
+        <div class="support-header">
+          <span class="tag u-inline u-mb-14">Support</span>
+          <h1 class="support-title">We're here to help</h1>
+          <p class="support-sub">Have a question, issue, or feedback? Reach out. We read every message.</p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-left">
+            <span class="icon-lg">✉️</span>
+            <div><h2>Get in touch</h2><p>For any questions, feedback, or support, email us directly. We aim to respond within 2 business days.</p></div>
+          </div>
+          <a href="mailto:saaci.app@hotmail.com" class="btn-primary">saaci.app@hotmail.com</a>
+        </div>
+
+        <h2 class="faq-title">Frequently asked questions</h2>
+        <div>
+          <div class="faq-item"><h3>When will Saaci be available?</h3><p>Saaci is currently in development. Email us to stay in the loop and we will share updates as they happen.</p></div>
+          <div class="faq-item"><h3>Is Saaci free to use?</h3><p>We have not announced pricing yet. Reach out and we will keep you updated as plans are confirmed.</p></div>
+          <div class="faq-item"><h3>Is Saaci available on iOS and Android?</h3><p>Saaci is being built as a mobile app. Platform availability will be confirmed closer to launch.</p></div>
+          <div class="faq-item"><h3>Is my health data safe?</h3><p>Yes. We take data privacy seriously. Read our Privacy Policy for full details on how your data is collected, used, and protected.</p></div>
+          <div class="faq-item"><h3>Can I use Saaci in a medical emergency?</h3><p>No. Saaci is not an emergency service. If you are experiencing a crisis, contact your care team or emergency services immediately.</p></div>
+          <div class="faq-item"><h3>What is flare risk?</h3><p>Flare risk is Saaci's support feature that estimates whether your recent patterns suggest a higher chance of an episode. It may consider things like hydration, pain frequency, mood, stress, and symptom activity. It is not a diagnosis or emergency tool.</p></div>
+          <div class="faq-item"><h3>Who do I contact for support?</h3><p>Email us at <a href="mailto:saaci.app@hotmail.com" class="legal-link">saaci.app@hotmail.com</a> and we will get back to you as soon as we can.</p></div>
+        </div>
+
+        <div class="help-centre">
+          <span class="icon-md">📖</span>
+          <div><h3>Help centre</h3><p>A full help centre with guides and tutorials is coming soon. In the meantime, email us for anything you need.</p></div>
+          <span class="tag tag-lilac">Coming soon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="logo.jpg.jpg" alt="Saaci logo">
+          <span class="footer-logo-text">saaci</span>
+        </div>
+        <p class="footer-tagline">A calmer, more organised way to live with sickle cell disease.</p>
+        <a href="mailto:saaci.app@hotmail.com" class="footer-email">saaci.app@hotmail.com</a>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-link-group">
+          <p class="footer-group-title">Navigate</p>
+          <span class="footer-link" onclick="showPage('home')">Home</span>
+          <span class="footer-link" onclick="showPage('about')">About Saaci</span>
+          <span class="footer-link" onclick="showPage('support')">Support</span>
+        </div>
+
+        <div class="footer-link-group">
+          <p class="footer-group-title">Legal</p>
+          <span class="footer-link" onclick="showPage('privacy')">Privacy Policy</span>
+          <span class="footer-link" onclick="showPage('terms')">Terms of Use</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-disclaimer">
+      <p>Saaci is a health tracking and wellness support tool. It is not a medical device and is not intended to diagnose, treat, cure, or prevent any condition. Always seek advice from a qualified healthcare professional for medical concerns.</p>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Saaci. All rights reserved.</p>
+      <p class="footer-made">Built with care for the sickle cell community.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function showPage(pageName){
+  document.querySelectorAll('.page-section').forEach(section=>{
+    section.classList.remove('active');
+  });
+
+  const target = document.getElementById('page-' + pageName);
+  if(target){
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+window.addEventListener('scroll', function(){
+  const navbar = document.getElementById('navbar');
+  if(window.scrollY > 20){
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+</script>
+
+</body>
+</html>
