@@ -561,6 +561,51 @@ footer{background:var(--text);color:#fff;padding:68px 0 28px}
 .footer-copy{font-size:12.5px;color:rgba(255,255,255,0.32)}
 .footer-made{font-size:12.5px;color:rgba(255,255,255,0.22);font-style:italic}
 
+/* HOW IT WORKS */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:36px}
+.how-step{
+  background:#fff;border-radius:var(--radius);padding:28px;
+  border:1px solid var(--border);box-shadow:var(--shadow);
+  transition:var(--transition)
+}
+.how-step:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.how-step-num{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--coral) 0%,var(--apricot) 100%);
+  color:#fff;font-family:var(--font-display);font-size:18px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:16px
+}
+.how-step-title{font-family:var(--font-body);font-size:16px;font-weight:700;margin-bottom:9px;color:var(--text)}
+.how-step-text{font-size:13.5px;color:var(--muted);line-height:1.65}
+.mascot-card{
+  background:linear-gradient(135deg,rgba(255,214,199,0.45) 0%,rgba(200,182,255,0.28) 100%);
+  border:1px solid rgba(255,106,77,0.14);border-radius:var(--radius);
+  padding:34px 38px;margin-bottom:32px;display:flex;align-items:flex-start;gap:20px
+}
+.mascot-emoji{font-size:36px;flex-shrink:0;line-height:1.1}
+.mascot-body p{font-size:14.5px;color:var(--text);line-height:1.7}
+.mascot-title{font-family:var(--font-body);font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px}
+.games-launch{margin-bottom:32px;text-align:center}
+.games-launch-label{
+  font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--coral);margin-bottom:14px
+}
+.games-chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+.game-chip{
+  display:flex;align-items:center;gap:8px;background:#fff;
+  border:1px solid var(--border);border-radius:var(--radius-pill);
+  padding:9px 17px;font-size:13px;font-weight:500;color:var(--text);
+  box-shadow:0 2px 8px rgba(255,106,77,0.07)
+}
+.games-note{font-size:13px;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.6}
+.how-disclaimer{
+  text-align:center;font-size:12.5px;color:var(--muted);
+  max-width:640px;margin:0 auto;line-height:1.6;
+  padding:16px 20px;background:rgba(255,106,77,0.04);
+  border:1px solid rgba(255,106,77,0.1);border-radius:var(--radius-sm)
+}
+.tag-new{background:rgba(76,175,80,0.12);color:#2E7D32}
+
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
@@ -571,6 +616,7 @@ footer{background:var(--text);color:#fff;padding:68px 0 28px}
   .hero-inner,.who-inner,.founder-inner,.two-col,.why-grid,.app-preview-grid{grid-template-columns:1fr;gap:40px}
   .features-grid{grid-template-columns:repeat(2,1fr)}
   .helps-grid{grid-template-columns:repeat(2,1fr)}
+  .how-grid{grid-template-columns:1fr}
   .values-grid,.for-cards{grid-template-columns:1fr 1fr}
   .hero{padding:120px 0 64px}
   .hero-visual{order:-1}
@@ -585,6 +631,7 @@ footer{background:var(--text);color:#fff;padding:68px 0 28px}
   .nav-links{gap:14px;flex-wrap:wrap;justify-content:flex-end}
   .features-grid{grid-template-columns:1fr}
   .helps-grid{grid-template-columns:1fr}
+  .mascot-card{flex-direction:column;gap:14px;padding:24px 22px}
   .values-grid,.for-cards{grid-template-columns:1fr}
   .footer-top{grid-template-columns:1fr}
   .footer-bottom{flex-direction:column;gap:6px;text-align:center}
@@ -661,7 +708,59 @@ footer{background:var(--text);color:#fff;padding:68px 0 28px}
     </div>
   </section>
 
+  <!-- HOW SAACI WORKS -->
   <section class="section section-gradient">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag u-inline u-mb-15">How it works</span>
+        <h2 class="section-title">How Saaci works</h2>
+        <p class="section-sub">A simple companion-style experience that helps you stay organised, informed, and supported.</p>
+      </div>
+
+      <div class="how-grid">
+        <div class="how-step">
+          <div class="how-step-num">1</div>
+          <div class="how-step-title">Set up your profile</div>
+          <p class="how-step-text">When you first open Saaci, you create your profile and choose your sickle cell type so the app feels more personal to you.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">2</div>
+          <div class="how-step-title">Log your daily health</div>
+          <p class="how-step-text">Track hydration, pain, medication, mood, symptoms, transfusions, appointments, and other important health details in one organised place.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">3</div>
+          <div class="how-step-title">Build patterns over time</div>
+          <p class="how-step-text">Saaci helps you notice trends through charts, streaks, daily status, routines, education, breathwork, and supportive guidance.</p>
+        </div>
+      </div>
+
+      <div class="mascot-card">
+        <span class="mascot-emoji">🐾</span>
+        <div class="mascot-body">
+          <div class="mascot-title">Saaci's mascot reflects you</div>
+          <p>Saaci's mascot reflects how you're taking care of yourself. If you're dehydrated, stressed, in pain, or falling behind on routines, Saaci may look tired too. The goal is to make health management feel more interactive, supportive, and motivating — not stressful.</p>
+        </div>
+      </div>
+
+      <div class="games-launch">
+        <p class="games-launch-label">✨ New — Mini Games</p>
+        <div class="games-chips">
+          <div class="game-chip"><span>🔍</span><span>Emoji Search</span></div>
+          <div class="game-chip"><span>🟦</span><span>Block Sort</span></div>
+          <div class="game-chip"><span>🃏</span><span>Tile Match</span></div>
+          <div class="game-chip"><span>🧩</span><span>Puzzle Mode</span></div>
+          <div class="game-chip"><span>🔴</span><span>Connect Four</span></div>
+          <div class="game-chip"><span>🔵</span><span>Connect Dots</span></div>
+        </div>
+        <p class="games-note">Short, soothing games designed to give your mind a gentle break between daily health tasks. Earn coins as you play and unlock rewards — all within the Saaci experience.</p>
+      </div>
+
+      <p class="how-disclaimer">🩺 Saaci is a support and tracking tool only. It does not replace medical advice, diagnosis, or treatment. Always consult your care team for medical guidance.</p>
+    </div>
+  </section>
+
+  <section class="section section-bg">
     <div class="container">
       <div class="section-head">
         <span class="tag u-inline u-mb-15">Features</span>
@@ -748,14 +847,31 @@ footer{background:var(--text);color:#fff;padding:68px 0 28px}
           <div class="feature-title">Saaci Assistant</div>
           <div class="feature-desc feature-desc-muted">A calm support companion for check-ins, routines, hydration reminders, breathwork support, and general wellbeing guidance.</div>
         </div>
+
+        <div class="feature-card feature-card-white">
+          <div class="feature-icon-wrap feature-icon-lilac"><span class="feature-icon">🧠</span></div>
+          <div class="feature-title">Mind &amp; Support</div>
+          <div class="feature-desc feature-desc-muted">Sickle-cell-specific mental wellbeing support across 9 guided topics — from managing pain anxiety to navigating social situations. Each topic includes gentle steps, a reflection prompt, and a personal journal.</div>
+        </div>
+
+        <div class="feature-card feature-card-white">
+          <div class="feature-icon-wrap feature-icon-peach"><span class="feature-icon">💧</span></div>
+          <div class="feature-title">Hydration Ideas</div>
+          <div class="feature-desc feature-desc-muted">Drink recipes crafted with sickle cell in mind — healing teas, infused waters, and nourishing blends. Save your favourites and find new ways to stay hydrated every day.</div>
+        </div>
+
+        <div class="feature-card feature-card-white">
+          <div class="feature-icon-wrap feature-icon-apricot"><span class="feature-icon">🍽️</span></div>
+          <div class="feature-title">Smart Nutrition</div>
+          <div class="feature-desc feature-desc-muted">Explore smart food pairings, balanced plate ideas, and sickle-cell-aware nutrition guidance to support your everyday wellbeing. General wellness support — not medical advice.</div>
+        </div>
       </div>
 
       <div class="coming-soon-row">
-        <p class="cs-label">Coming soon</p>
+        <p class="cs-label">Now in Saaci</p>
         <div class="cs-cards">
-          <div class="cs-card"><span>🎮</span><span>Mini Games</span><span class="tag tag-lilac tag-soon">Soon</span></div>
-          <div class="cs-card"><span>✅</span><span>Habit Tracker</span><span class="tag tag-lilac tag-soon">Soon</span></div>
-          <div class="cs-card"><span>🍽️</span><span>Food Analysis</span><span class="tag tag-lilac tag-soon">Soon</span></div>
+          <div class="cs-card"><span>🎮</span><span>Mini Games</span><span class="tag tag-new tag-soon">New ✨</span></div>
+          <div class="cs-card"><span>✅</span><span>Habit Tracker</span><span class="tag tag-new tag-soon">New ✨</span></div>
         </div>
       </div>
     </div>
@@ -1097,7 +1213,7 @@ footer{background:var(--text);color:#fff;padding:68px 0 28px}
 
         <h2 class="faq-title">Frequently asked questions</h2>
         <div>
-          <div class="faq-item"><h3>When will Saaci be available?</h3><p>Saaci is currently in development. Email us to stay in the loop and we will share updates as they happen.</p></div>
+          <div class="faq-item"><h3>When will Saaci be available?</h3><p>Saaci is now live on the App Store and available to download on mobile devices.</p></div>
           <div class="faq-item"><h3>Is Saaci free to use?</h3><p>We have not announced pricing yet. Reach out and we will keep you updated as plans are confirmed.</p></div>
           <div class="faq-item"><h3>Is Saaci available on iOS and Android?</h3><p>Saaci is currently being built as an iOS app. Android support is planned for the future, and updates will be shared as development progresses.</p></div>
           <div class="faq-item"><h3>Is my health data safe?</h3><p>Yes. We take data privacy seriously. Read our Privacy Policy for full details on how your data is collected, used, and protected.</p></div>
